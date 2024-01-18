@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>사과잼 - 사람들과 잼있게</title>
+    <link rel="icon" type="image/x-icon" sizes="16x16" th:href="@{/assets/appleJam.png}" />
+
+</head>
+
+
+<body>
+
+<div layout:fragment="content0">
+
+            <form action="/TopMenu/MyPage/modifyPw" method="post">
+                <div id="container">
+
+                    <div id="membershipBox" style="
+                    box-shadow: 0 0 15px #D59370;
+                    width: 300px;
+                    height: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    ">
+                        <h2>새로운 비밀번호를 입력하세요</h2><br><br>
+                        <input id ="pw" name="pw" type="text" required><br>
+                        <button type="submit">비밀번호 수정</button>
+                    </div>
+                </div>
+            </form>
+
+</div>
+
+<a id="LogOutButton" th:href="@{LoginPage/login}"><button>로그아웃</button></a>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+.word:hover {
+    font-size: 120%; /* 마우스 오버 시 글꼴 크기를 120%로 증가 */
+    transition: font-size 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.word {
+    transition: font-size 0.3s ease, fill 0.3s ease;
+}

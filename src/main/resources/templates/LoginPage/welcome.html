@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>사과잼 - 사람들과 잼있게</title>
+    <link rel="icon" type="image/x-icon" sizes="16x16" th:href="@{/assets/appleJam.png}" />
+
+    <style>
+
+
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #welcome{
+            justify-content: center;
+            align-items: center;
+            display:flex;
+            height:90vh;
+            font-size:70px;
+        }
+        #login{
+            justify-content: center;
+            align-items: center;
+            display:flex;
+
+            font-size:35px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<form action="/LoginPage/welcome" method="post">
+
+    <div id="welcome">회원가입을 환영합니다</div>
+    <div id="login"> <a href="/LoginPage/login">로그인 창으로 이동하기</a></div>
+</form>
+</body>
+</html>

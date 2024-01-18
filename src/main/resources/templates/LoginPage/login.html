@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>사과잼 - 사람들과 잼있게</title>
+  <link rel="icon" type="image/x-icon" sizes="16x16" th:href="@{/assets/appleJam.png}" />
+
+</head>
+<style>
+
+
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 50px; /* spacing between the children */
+  }
+
+  #appleJam {
+    box-sizing: border-box;
+    width: 550px;
+    height: 300px;
+  }
+
+
+
+  #loginBox {
+    box-shadow: 0 0 15px #D59370;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column; /* 이 부분을 추가 */
+    justify-content: center;
+    align-items: center;
+  }
+
+  form input {
+    margin: 5px 0;
+  }
+</style>
+<body>
+
+<div id="container">
+  <div id = "appleJam">
+    <h1>AppleJam</h1>
+    <br>
+    <h4>Apple jam is an abbreviation for ‘people’ and ‘fun’ in Korean.</h4>
+    <h4> Just as it feels good to eat sweet and refreshing apple jam,</h4>
+    <h4> we hope you can have a good time with others by using local community apple jam. </h4>
+  </div>
+
+
+  <div id="loginBox">
+
+
+    <div th:if="${result}">
+      <div style="color:#c45b5b; text-align:center; margin-bottom: 10px;">
+      <h1 th:text="${result}">Error message</h1>
+      </div>
+    </div>
+
+    <form action="/LoginPage/login" method="post">
+      <input type="text" name="username" placeholder="아이디"><br>
+      <input type="password" name="password" placeholder="비밀번호"><br>
+      자동 로그인<input type="checkbox" name="remember-me"><br>
+      <input type="submit" value="로그인">
+      <input type="button" value="회원가입" onclick="location.href='/LoginPage/register'">
+    </form>
+    <br>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

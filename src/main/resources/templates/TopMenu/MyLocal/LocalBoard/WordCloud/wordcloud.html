@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>사과잼 - 사람들과 잼있게</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
+</head>
+<style>
+
+</style>
+<body>
+
+
+    <div layout:fragment="content0" style="margin-top:50px;">
+        <h3>단어를 클릭해보세요!!</h3>
+        <div id="wordCloud"></div>
+        <button id="one" name="months">최근 1개월</button>&nbsp&nbsp<button id="two" name="months">최근 2개월</button>&nbsp&nbsp<button id="three" name="months">최근 3개월</button>&nbsp&nbsp<button id="all" name="months">전체 기간</button>
+        <script src="/js/wordcloud.js"></script>
+
+    </div>
+
+</body>
+</html>

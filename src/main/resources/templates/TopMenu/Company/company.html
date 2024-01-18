@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutForIntroduce.html}">
+<head>
+  <meta charset="UTF-8">
+  <title>사과잼 - 사람들과 잼있게</title>
+  <link rel="stylesheet" th:href="@{/css/layout.css/}">
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0eeba3ccfd9abf8f5406b0c318e1859c"></script>
+
+</head>
+<body>
+
+<div layout:fragment="introduce" style="z-index:0;">
+
+  <div id = "appleJam" style="font-size:35px;">
+    <h1>AppleJam</h1>
+    <br>
+    <h4>Apple jam is an abbreviation for ‘people’ and ‘fun’ in Korean.</h4>
+    <h4> Just as it feels good to eat sweet and refreshing apple jam,</h4>
+    <h4> we hope you can have a good time with others by using local community apple jam. </h4>
+  </div>
+
+</div>
+
+
+
+
+
+<div layout:fragment="content0">
+
+  <div>
+    <div style="font-size:35px;"><h1>How to get there</h1></div><br>
+  </div>
+
+  <div id="staticMap" style="width:600px;height:350px;"></div>
+
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0eeba3ccfd9abf8f5406b0c318e1859c"></script>
+  <script>
+    // 이미지 지도에 표시할 마커입니다
+    var marker = {
+      position: new kakao.maps.LatLng(35.875669, 128.681496),
+      text: '영진직업전문학교' // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다
+    };
+
+    var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div
+            staticMapOption = {
+              center: new kakao.maps.LatLng(35.875669, 128.681496), // 이미지 지도의 중심좌표
+              level: 4, // 이미지 지도의 확대 레벨
+              marker: marker // 이미지 지도에 표시할 마커
+            };
+
+    // 이미지 지도를 생성합니다
+    var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+  </script>
+
+
+
+
+
+  <div style="
+      width: 600px; /* 박스의 가로 크기 */
+      height: 125px; /* 박스의 세로 크기 */
+      border: 2px solid dimgray; /* 박스의 테두리 (여기서는 검정색 테두리) */
+      padding: 10px; /* 내부 텍스트와 테두리 사이의 간격 설정 */
+      box-sizing: border-box;
+      text-align: center; /* 텍스트 가운데 정렬 */
+  ">
+    <div>주소 : (701-835) 대구광역시 동구 화랑로 525(용계동), 조경실습장 : 대구 동구 도동 806-21
+    </div><br>
+    <div>버스 : 618, 719, 805, 808, 818, 836, 980, 동구1, 동구1-1, 동구2</div><br>
+    <div>지하철 : 대구1호선 용계역 (3번 출구)</div>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+</body>
+</html>

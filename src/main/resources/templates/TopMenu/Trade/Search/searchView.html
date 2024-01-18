@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh}">
+<head>
+    <meta charset="UTF-8">
+    <title>사과잼 - 사람들과 잼있게</title>
+</head>
+<style>
+    #wrap1{
+        display: flex;
+        justify-content: center; /* 가로 축에서 중앙 정렬 */
+        align-items: center; /* 세로 축에서 중앙 정렬 */
+        height: 100vh; /* 뷰포트 높이의 100%를 차지하게 합니다 */
+        margin: 0; /* 기본 마진 제거 */
+    }
+  #search-input{
+      width:800px;
+      height:70px;
+      font-size: 20px;
+
+  }
+</style>
+<body>
+
+<div layout:fragment="content0">
+    <div id="wrap1">
+        <img th:src="@{/assets/appleJamMain.png}" style="width:100px;height:100px;float:left;" id="appleJam" >
+            <form action="/TopMenu/Trade/TradeBoard" method="post" style="float:left;">
+                <input id="search-input" type="text" name="query" placeholder="검색어 입력" style="width:800px; height:70px; font-size: 20px;">
+                <button type="submit" style="width:75px;height:75px;">검색</button>
+            </form>
+        <h5>이 검색시스템은 ChatGPT-4를 기반으로 합니다.</h5>
+
+    </div>
+</div>
+
+</body>
+</html>

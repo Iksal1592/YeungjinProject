@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+
+<head>
+    <title>사과잼 - 사람들과 잼있게</title>
+
+    <style>
+
+        .pagination {
+            display: flex;
+            justify-content: center; /* 가운데 정렬 */
+            list-style: none;
+            padding: 0;
+        }
+        .pagination flex-wrap li {
+            margin: 0 1px; /* 숫자 간격 조정 */
+            line-height: 1.5; /* 라인 높이 조정 */
+        }
+        .pagination a {
+            color: black; /* 글씨 색상 */
+            background-color: white; /* 배경 색상 */
+            text-decoration: none;
+            padding: 2px 2px; /* 버튼 크기 조정 */
+            border: 1px solid #ddd;
+            border-radius: 5px; /* 둥근 모서리 */
+            transition: background-color 0.3s, border-color 0.3s;
+            vertical-align: middle; /* 수직 정렬 조정 */
+        }
+        .pagination a:hover {
+            background-color: #eee; /* 마우스 호버 시 배경색 변경 */
+            border-color: #d98a62;
+        }
+        .pagination .active a {
+            background-color: #d98a62;
+            color: #000000;
+            border-color: #d98a62;
+        }
+        .page-item{
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        .table tbody tr:hover {
+            background-color: #d98a62;
+        }
+        .table tbody tr {
+            transition: background-color 0.3s; /* 배경색 변경 속도 조정 */
+        }
+
+        .table tbody th:first-child {
+            border-top-left-radius: 10px; /* 왼쪽 상단 둥근 모서리 */
+            border-bottom-left-radius: 10px; /* 왼쪽 하단 둥근 모서리 */
+        }
+        .table tbody td:last-child {
+            border-top-right-radius: 10px; /* 오른쪽 상단 둥근 모서리 */
+            border-bottom-right-radius: 10px; /* 오른쪽 하단 둥근 모서리 */
+        }
+
+        .table tbody tr td a{
+            color: black; /* 기본 색상: 검정색 */
+            cursor: pointer;
+            text-decoration: none; /* 밑줄 제거 */
+        }
+        .table tbody tr td a:visited{
+            color: gray;
+        }
+
+        .badge.progress-bar-success {
+            background-color: #d98a62;
+            padding: 5px 10px; /* 내부 여백을 추가하여 영역을 더 넓힘 */
+            border-radius: 5px; /* 원하는 모양으로 둥근 모서리 추가 */
+        }
+    </style>
+
+
+
+</head>
+
+
+<div layout:fragment="content0" >
+    <br><br><br><br><br><br><br><br>
+
+    <div class="row mt-3">
+        <h1 class="card-title">지역 게시판 리스트</h1>
+        <br>
+        <form th:action="@{/TopMenu/MyLocal/LocalBoard/localBoard}" method="get">
+            <div class="col">
+                <input type="hidden" name="size" th:value="${pageRequestDTO.size}">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select class="form-select" name="type" style="height:25px;">
+                            <option value="">---</option>
+                            <option value="t" th:selected="${pageRequestDTO.type =='t'}">제목</option>
+                            <option value="c" th:selected="${pageRequestDTO.type =='c'}">내용</option>
+                            <option value="w" th:selected="${pageRequestDTO.type =='w'}">작성자</option>
+                            <option value="tc" th:selected="${pageRequestDTO.type =='tc'}">제목 내용</option>
+                            <option value="tcw" th:selected="${pageRequestDTO.type =='tcw'}">제목 내용 작성자</option>
+                            <option value="local" th:selected="${pageRequestDTO.type =='l'}">지역</option>
+                        </select>
+                        <input type="text" class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}" placeholder="검색어를 입력해주세요" style="height:22px;">
+                        <button class="btn btn-outline-secondary searchBtn" type="submit" style="height:25px; border-radius:5px; border:1px solid #543a2b; background-color:#D59370FF;">Search</button>
+                        <button class="btn btn-outline-secondary clearBtn" type="button" style="height:25px; border-radius:5px; border:1px solid #543a2b; background-color:#D59370FF;">Clear</button>
+                        <a th:href="@{/TopMenu/MyLocal/LocalBoard/localboardregister}" style="float:right; border:1px solid black; border-radius: 5px; background-color:#D59370FF;">
+                            <img th:src="@{/assets/pen-solid.png}" alt="Register" style="width:17px; height:17px;vertical-align: middle;"/>글쓰기
+                        </a>
+                    </div>
+
+                    <br>
+
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+    <div class="row mt-3">
+
+        <div class="col">
+            <div class="card">
+
+                <div class="card-body">
+                    <table class="table" style="width:1000px;height:400px;">
+                        <thead>
+                        <tr>
+                            <th scope="col">Bno</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Writer</th>
+                            <th scope="col">RegDate</th>
+                            <th scope="col">Local</th>
+
+                        </tr>
+                        </thead>
+                        <tbody th:with="link = ${pageRequestDTO.getLink()}" >
+                        <tr th:each="dto:${responseDTO.dtoList}"><!--model-->
+                            <th scope="row">[[${dto.bno}]]</th>
+                            <td>
+                                <a th:href="|@{/TopMenu/MyLocal/LocalBoard/localboardread(bno=${dto.bno})}&${link}|">[[${dto.title}]]</a>
+                                <span class="badge progress-bar-success">
+                                    [[${dto.replyCount}]]
+                                </span>
+                            </td>
+                            <td>[[${dto.writer}]]</td>
+                            <td>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd')}]]</td>
+                            <td>[[${dto.local}]]</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+
+                    <div class="float-end" style="width:1000px;height:50px;">
+                        <ul class="pagination flex-wrap">
+                            <li class="page-item" th:if="${responseDTO.prev}">
+                                <a class="page-link" th:data-num="${responseDTO.start -1}">Previous</a>
+                            </li>
+                            <th:block th:each="i: ${#numbers.sequence(responseDTO.start, responseDTO.end)}">
+                                <li th:class="${responseDTO.page==i}?'page-item active':'page-item'" style="float:left; margin-left:10px;">
+                                    <a class="page-link" th:data-num="${i}">[[${i}]]</a>
+                                </li>
+                            </th:block>
+
+                            <li class="page-item" th:if="${responseDTO.next}">
+                                <a class="page-link" th:data-num="${responseDTO.end+1}">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div><!--end card body-->
+            </div><!--end card-->
+        </div><!-- end col-->
+    </div><!-- end row-->
+
+</div><!-- end layout fragment -->
+<script layout:fragment="script" th:inline="javascript">
+    document.querySelector(".pagination").addEventListener("click",function(e){
+        e.preventDefault()
+        e.stopPropagation()
+        const target =e.target
+
+        if(target.tagName !=='A'){
+            return
+        }
+
+        const num = target.getAttribute('data-num')
+        const formObj = document.querySelector("form")
+        formObj.innerHTML += `<input type='hidden' name='page' value='${num}'>`
+        formObj.submit()
+
+    },false)
+
+    document.querySelector(".clearBtn").addEventListener("click",function(e){
+        e.preventDefault()
+        e.stopPropagation()
+        self.location='/TopMenu/MyLocal/LocalBoard/localBoard'
+    },false)
+
+
+
+
+    //show modal
+    const result = [[${result}]]
+
+    const modal =new bootstrap.Modal(document.querySelector(".modal"))
+
+    if(result){
+        modal.show()
+    }
+
+</script>
+
+</html>

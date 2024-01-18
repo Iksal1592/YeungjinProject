@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>사과잼 - 사람들과 잼있게</title>
+    <link rel="icon" type="image/x-icon" sizes="16x16" th:href="@{/assets/appleJam.png}" />
+
+</head>
+<style>
+    #goodbye{
+        justify-content: center;
+        align-items: center;
+        display:flex;
+        height:90vh;
+        font-size:70px;
+    }
+    #gotohome{
+        justify-content: center;
+        align-items: center;
+        display:flex;
+        font-size:35px;
+        text-decoration: none;
+
+    }
+
+</style>
+<body>
+<form action="/LoginPage/logout" method="get">
+    <div id="goodbye">안녕히 가세요!</div>
+    <a id="gotohome" th:href="@{/LoginPage/logout}"><button>로그인 창으로 이동하기</button></a>
+</form>
+</body>
+</html>

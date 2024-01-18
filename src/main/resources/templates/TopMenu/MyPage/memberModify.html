@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+<head>
+  <meta charset="UTF-8">
+  <title>사과잼 - 사람들과 잼있게</title>
+  <link rel="stylesheet" th:href="@{/css/layout.css}">
+
+  <style>
+
+
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 50px;
+    }
+
+    #membershipBox {
+      box-shadow: 0 0 15px #D59370;
+      width: 300px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form input {
+      margin: 5px 0;
+    }
+    #LogOutButton{
+      position: fixed;
+      bottom: 10px;
+      left: 95%;  /* 화
+
+    면 중앙에 위치시키기 위해 50%로 설정 */
+      transform: translateX(-50%); /* 버튼 자체의 중앙을 기준으로 이동 */
+      z-index: 9999; /* 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+<div layout:fragment="content0" style="margin-top:50px;">
+  <br><br><br><br><br><br><br><br><br><br>
+
+  <div>
+    <div id="container">
+
+      <div id="membershipBox">
+
+        <form action="/TopMenu/MyPage/memberModify" method="post">
+          <label>아이디: <input type="text" name="mid" th:value="${member.mid}" readonly></label><br>
+          <label><input type="password" name="mpw" th:value="${member.mpw}" hidden readonly ></label><br>
+          <label>이름: <input type="text" name="mname" th:value="${member.mname}" readonly></label><br>
+          <label>나이: <input type="text" name="mage" th:value="${member.mage}" ></label><br>
+          <label>주소: <input type="text" name="maddress" th:value="${member.maddress}" ></label><br>
+          <label>이메일: <input type="text" name="email" th:value="${member.email}"></label><br>
+
+          <br>성별<br>
+          <label>남자:
+            <input type="radio" name="msex" value="male" th:checked="${member.msex == 'male'}">
+          </label>
+          <label>여자:
+            <input type="radio" name="msex" value="female" th:checked="${member.msex == 'female'}">
+          </label>
+          <input type="submit" value="수정완료" style="display: block; margin-left: auto; margin-right: auto; width:275px; height:25px;">
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+  <a id="LogOutButton" th:href="@{/LoginPage/login}"><button>로그아웃</button></a>
+</div>
+
+</body>
+</html>

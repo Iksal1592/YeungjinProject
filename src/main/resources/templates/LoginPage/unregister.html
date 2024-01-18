@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>사과잼 - 사람들과 잼있게</title>
+    <link rel="icon" type="image/x-icon" sizes="16x16" th:href="@{/assets/appleJam.png}" />
+
+</head>
+<body>
+
+<div layout:fragment="content0">
+
+
+
+<form action="/LoginPage/unregister" method="post">
+
+
+    <div id="membershipBox" style="
+                    box-shadow: 0 0 15px #D59370;
+                    width: 300px;
+                    height: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    ">
+        <h1 style="text-align: center">회원탈퇴 페이지</h1>
+        <br><br>
+        <div style="color:#c45b5b; margin-bottom: 10px; text-align: center">
+            <h1 th:text="${result}">Error message</h1>
+        </div>
+        <br><br>
+        <label>아이디: <input type="id" id="id" name="id" th:value="${id}" readonly></label><br>
+        <label>비밀번호: <input type="password" id="password" name="password"></label><br>
+        <input type="submit" value="회원탈퇴" id="unregisterButton">
+    </div>
+
+</form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>사과잼 - 사람들과 잼있게</title>
+  <link rel="icon" type="image/x-icon" sizes="16x16" th:href="@{/assets/appleJam.png}" />
+
+  <style>
+
+
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      gap: 50px;
+    }
+
+    #membershipBox {
+      box-shadow: 0 0 15px rgba(100, 96, 89, 0.9);
+      width: 300px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form input {
+      margin: 5px 0;
+    }
+    #LoginButton {
+      position: fixed;
+      bottom: 10px;
+      left: 95%;  /* 화
+
+    면 중앙에 위치시키기 위해 50%로 설정 */
+      transform: translateX(-50%); /* 버튼 자체의 중앙을 기준으로 이동 */
+      z-index: 9999; /* 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+  <div id="membershipBox">
+    <div style="color:#c45b5b; text-align:center; margin-bottom: 10px;">
+      <h1><strong th:text="${result}"></strong></h1>
+    </div>
+    <form action="/LoginPage/register" method="post">
+      <!--onblur="idDuplication()"-->
+      <label>아이디: <input type="text" name="mid" id="id" onblur="idDuplication()"></label><br>
+      <span id ="id-Duplication-Result"></span><br>
+      <label>비밀번호: <input type="password" name="mpw" required></label><br>
+      <label>이름: <input type="text" name="mname" required></label><br>
+      <label>나이: <input type="text" name="mage" required></label><br>
+      <label>주소: <input type="text" name="maddress" required></label><br>
+      <label>이메일: <input type="text" name="email" required></label>
+      <br>성별<br>
+      <label>남자: <input type="radio" name="msex" value="male" required></label>
+      <label>여자: <input type="radio" name="msex" value="female" required></label><br><br>
+      <input type="submit" value="회원가입"  id="registerButton"  style="display: block; margin-left: auto; margin-right: auto; width:275px; height:25px;">
+
+    </form>
+    <a id="LoginButton" th:href="@{/LoginPage/logout}"><button>로그인 창으로</button></a>
+
+    <br>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script th:inline = "javascript">
+  const idDuplication = () => {
+    const id = document.getElementById("id").value;
+    const checkResult = document.getElementById("id-Duplication-Result");
+
+    // 아이디 유효성 검사
+    if (id.trim() === "" || id.includes(" ")) {
+      checkResult.innerHTML = "빈 칸 또는 띄어쓰기가 포함될 수 없습니다";
+      checkResult.style.color = "red";
+      document.getElementById("registerButton").disabled = true;
+      return; // 추가 검사 중단
+    }
+
+    $.ajax({
+      type: "post",
+      url:"/LoginPage/idcheck",
+      dataType: "text",
+      data: {
+        "id": id
+      },
+      success : function (result) {
+        if(result === "ok"){
+          checkResult.innerHTML = "사용가능한 아이디입니다";
+          checkResult.style.color = "green";
+          document.getElementById("registerButton").disabled = false;
+        } else {
+          checkResult.innerHTML = "중복된 아이디입니다";
+          checkResult.style.color = "red";
+          document.getElementById("registerButton").disabled = true;
+        }
+        console.log("success 확인");
+      },
+      error : function () {
+        alert ("ajax 실패");
+        console.log("error 확인");
+      }
+    });
+  }
+</script>
+
+
+
+</body>
+</html>

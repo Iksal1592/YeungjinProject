@@ -1,0 +1,147 @@
+@charset "utf-8";
+
+*{
+
+    margin : 0px;
+    padding : 0px;
+
+
+
+}
+
+#wrap{
+    background-color: #ffffff;
+    position:fixed;
+    width: 100%;
+    height:70px;
+    box-sizing: border-box;
+    float:left;
+}
+
+#wrap>#logo{
+    width:300px;
+    height:70px;
+    box-sizing:border-box;
+    float: left;
+    font-size: 30px;
+}
+
+#wrap>#nav{
+    width:900px;
+    height:70px;
+    box-sizing:border-box;
+    float: left;
+    font-size: 20px;
+
+
+
+}
+
+#wrap>#myPage{
+    float:right;
+    width:140px;
+    height:70px;
+    box-sizing: border-box;
+
+}
+
+
+
+
+
+#gnb{
+
+    float : left;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+
+}
+#gnb>li{
+    float:left;
+
+}
+#gnb li>a{
+    float: left;
+    width: 200px;
+    height : 70px;
+    text-align: center;
+    color: black;
+    display:block;
+    box-sizing: border-box;
+    padding-top:25px;
+    background-color: #ffffff;
+    font-size:20px;
+    transition: background-color 0.5s ease; /* 배경색 변화를 0.5초 동안 천천히 진행하도록 설정 */
+
+}
+#gnb li>a:hover{
+    color:black;
+    background-color: aqua;
+
+}
+
+
+#gnb:hover {
+    background-color: white; /* 호버 시 배경색을 하얀색으로 변경 */
+}
+
+
+
+
+.lnb>li{
+    width:200px;
+    height:70px;
+    padding-top:15px;
+    display: none;
+    box-sizing: border-box;
+
+}
+
+.lnb>li a{
+    width:200px;
+    height:70px;
+    text-align: center;
+    padding-top:15px;
+    box-sizing: border-box;
+
+}
+#myPage a>#smallBox{
+    display:flex;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-top: 23px;
+    margin-right:20px;
+    border-radius: 4px;
+    border:1px black solid;
+    background-color: #ffffff;
+    transition: background-color 0.5s ease; /* 배경색 변화를 0.5초 동안 천천히 진행하도록 설정 */
+
+}
+
+
+#myPage a>#smallBox:hover{
+    background-color:aqua;
+}
+
+
+
+#backButton {
+    position: fixed;
+    bottom: 10px;
+    left: 95%;  /* 화
+
+    면 중앙에 위치시키기 위해 50%로 설정 */
+    transform: translateX(-50%); /* 버튼 자체의 중앙을 기준으로 이동 */
+    z-index: 9999; /* 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
+}
+#LogOutButton {
+    position: fixed;
+    bottom: 10px;
+    left: 95%;  /* 화
+
+    면 중앙에 위치시키기 위해 50%로 설정 */
+    transform: translateX(-50%); /* 버튼 자체의 중앙을 기준으로 이동 */
+    z-index: 9999; /* 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
+}
+
+

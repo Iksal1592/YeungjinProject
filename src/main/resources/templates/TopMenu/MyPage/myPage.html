@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+<head>
+  <meta charset="UTF-8">
+  <title>사과잼 - 사람들과 잼있게</title>
+  <link rel="stylesheet" th:href="@{/css/layout.css}">
+
+  <style>
+
+
+
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 50px;
+    }
+
+    #membershipBox {
+      box-shadow: 0 0 15px #D59370;
+      width: 300px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form input {
+      margin: 5px 0;
+    }
+    #LogOutButton{
+      position: fixed;
+      bottom: 10px;
+      left: 95%;  /* 화
+
+    면 중앙에 위치시키기 위해 50%로 설정 */
+      transform: translateX(-50%); /* 버튼 자체의 중앙을 기준으로 이동 */
+      z-index: 9999; /* 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
+    }
+  </style>
+</head>
+<body>
+<div layout:fragment="content0" style="margin-top:50px;">
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<div>
+  <form action="/TopMenu/MyPage/myPage" method="post">
+<div id="container">
+
+  <div id="membershipBox">
+    <label>아이디: <input type="text" name="id" th:value="${member.mid}" readonly></label><br>
+    <label> <input type="password" name="password" th:value="${member.mpw}" readonly hidden></label><br>
+    <label>이름: <input type="text" name="name" th:value="${member.mname}" readonly></label><br>
+    <label>나이: <input type="text" name="age" th:value="${member.mage}" readonly></label><br>
+    <label>주소: <input type="text" name="address" th:value="${member.maddress}" readonly></label><br>
+    <label>이메일: <input type="text" name="email" th:value="${member.email}" readonly></label><br>
+
+    <br>성별<br>
+    <label>남자:
+      <input type="radio" name="sex" value="male" th:checked="${member.msex == 'male'}" readonly>
+    </label>
+    <label>여자:
+      <input type="radio" name="sex" value="female" th:checked="${member.msex == 'female'}" readonly>
+    </label>
+
+    <a th:href="@{/TopMenu/MyPage/memberModify}"><input type="button" value="회원정보 수정" style="display: block; margin-left: auto; margin-right: auto; width:275px; height:25px;"></a>
+    <a th:href="@{/TopMenu/MyPage/modifyPw}"><input type="button" value="비밀번호 수정" style="display: block; margin-left: auto; margin-right: auto; width:275px; height:25px;"></a>
+
+    <a th:href="@{/LoginPage/unregister}"><input type="button" value="회원탈퇴" style="display: block; margin-left: auto; margin-right: auto; width:275px; height:25px;"></a>
+
+  </div>
+
+</div>
+  </form>
+
+</div>
+
+
+
+<a id="LogOutButton" th:href="@{LoginPage/login}"><button>로그아웃</button></a>
+</div>
+
+</body>
+</html>

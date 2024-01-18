@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+
+<head>
+    <title>사과잼 - 사람들과 잼있게</title>
+    <link rel="stylesheet" th:href="@{/css/board.css/}">
+
+</head>
+
+<div layout:fragment="content0">
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Trade Board Register
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/TopMenu/Trade/register}" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Title</span>
+                            <input type="text" name="title" class="form-control" placeholder="Title" style="width:800px;" required>
+                        </div>
+
+
+                        <div class="input-group mb-3">
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <select class="form-select" name="local">
+                                            <option value="서울">서울</option>
+                                            <option value="부산">부산</option>
+                                            <option value="대구">대구</option>
+                                            <option value="대전">대전</option>
+                                            <option value="광주">광주</option>
+                                            <option value="인천">인천</option>
+                                            <option value="세종">세종</option>
+                                            <option value="울산">울산</option>
+                                            <option value="제주">제주</option>
+                                            <option value="강원도">강원도</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Content</span>
+                            <textarea class="form-control col-sm-5" rows="5" name="content" style="width:800px;height:260px;" placeholder="Content" required></textarea>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Writer</span>
+                            <input type="text" name="writer" class="form-control" placeholder="Writer" th:value="${dto.mid}" readonly>
+
+                        </div>
+
+                            <div class="my-4">
+                            <div class="float-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!--end card body-->
+            </div><!--end card-->
+        </div><!-- end col-->
+    </div><!-- end row-->
+</div>
+
+<script layout:fragment="script" th:inline="javascript">
+    const errors = [[${errors}]]
+    let errorMsg=''
+
+    if(errors){
+        for(let i=0;i<errors.length;i++){
+            errorMsg+=`${errors[i].field}은(는) ${errors[i].code}`
+        }
+        alert(errorMsg)
+    }
+</script>

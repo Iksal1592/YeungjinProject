@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layoutFor100vh.html}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>사과잼 - 사람들과 잼있게</title>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+
+</head>
+
+
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+</style>
+
+
+
+<body>
+
+
+
+
+<div layout:fragment="content0">
+    <h3>자신의 지역을 클릭 해보세요!!</h3>
+    <div id="map" style="width:1200px;height:500px;z-index:0;"></div>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0eeba3ccfd9abf8f5406b0c318e1859c"></script>
+    <script th:src="@{/js/Coordinates.js}"></script>
+
+</div>
+
+<a id="LogOutButton" th:href="@{LoginPage/login}"><button>로그인 창으로</button></a>
+</body>
+</html>
